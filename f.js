@@ -4,8 +4,18 @@
  * Should play nice with Node/RequireJS/VanillaJS
  */
 
-/*globals module:true, window:true*/
-(function () {
+/*globals module:true, define:true*/
+(function(root, factory) {
+    "use strict";
+
+    root.f = factory.call({});
+
+    if (typeof define === "function" && define.amd) {
+        define(root.f.always(root.f));
+    } else if (typeof module === "object" && "exports" in module) {
+        module.exports = root.f;
+    }
+}(this, function() {
     "use strict";
 
     function makeArray(a) {
@@ -220,14 +230,5 @@
     }
     this.compose = compose;
 
-    // AMD export
-    if (typeof(define) === "function") {
-        define([], always(this));
-    }
-
     return this;
-}.call(
-    typeof(module) !== "undefined" && ("exports" in module && module.exports || module) ||
-    typeof(window) !== "undefined" && (window.f = {}) ||
-    {}
-));
+}));

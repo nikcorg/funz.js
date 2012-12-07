@@ -140,6 +140,9 @@
      * Match a value against a regex
      */
     function match(re) {
+        if (! (re instanceof RegExp)) {
+            re = new RegExp("^" + re + "$");
+        }
         return function (v) {
             return re.test(v);
         };
@@ -147,12 +150,10 @@
     this.match = match;
 
     /**
-     * Shorthand for a negated matcher
+     * Shorthand for an inverted matcher
      */
-    function omit(value) {
-        return function (v) {
-            return v !== value;
-        };
+    function omit(re) {
+        return compose(inverse, match(re));
     }
     this.omit = omit;
 

@@ -5,4 +5,15 @@ Ever since I watched the talk [Pure Javascript](https://vimeo.com/49384334), I'v
 
 As a result of this enlightenment, I've been writing and borrowing itty bitty functions from here and there which help me approach Javascript Nirvana.
 
-Finally, I got around to compiling what I have found to be the most useful ones in one place. This is that place.
+Finally, I got around to compiling what I have found to be the most useful ones into one place. This is that place.
+
+Examples
+========
+
+Parse `document.cookie`
+
+    function parseCookies() {
+        return document.cookie.split(";")
+            .filter(f.compose(f.inverse, f.empty, f.trim))
+            .map(f.compose(f.object(["name","value"]), f.split("=", 2)));
+    }

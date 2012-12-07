@@ -16,7 +16,7 @@
      * Multiplies the input
      */
     function mul(a, b) {
-        return a * b;
+        return Number(a) * Number(b);
     }
     this.mul = mul;
 
@@ -24,7 +24,7 @@
      * Adds the input
      */
     function add(a, b) {
-        return a + b;
+        return Number(a) + Number(b);
     }
     this.add = add;
 
@@ -32,7 +32,7 @@
      * Subtracts the input
      */
     function sub(a, b) {
-        return a - b;
+        return Number(a) - Number(b);
     }
     this.sub = sub;
 
@@ -40,7 +40,7 @@
      * Divides the input
      */
     function div(a, b) {
-        return a / b;
+        return Number(a) / Number(b);
     }
     this.div = div;
 
@@ -137,6 +137,16 @@
     this.func = func;
 
     /**
+     * Match a value against a regex
+     */
+    function match(re) {
+        return function (v) {
+            return re.test(v);
+        };
+    }
+    this.match = match;
+
+    /**
      * Shorthand for a negated matcher
      */
     function omit(value) {
@@ -185,7 +195,7 @@
      */
     function partial(ctx, fn) {
         var rest = tail(makeArray(arguments), 2);
-        return function () {
+        return function partialinner() {
             var args = rest.concat(makeArray(arguments));
             return fn.apply(ctx, args);
         };
@@ -199,12 +209,12 @@
      */
     function compose() {
         var fstack = Array.prototype.slice.call(arguments, 0).reverse();
-        return function (v) {
-            var r = v;
+        return function composeinner(v) {
+            var r = [v];
             fstack.forEach(function (f) {
-                r = f(r);
+                r = [f.apply(this, r)];
             });
-            return r;
+            return r[0];
         };
     }
     this.compose = compose;

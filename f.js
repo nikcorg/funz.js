@@ -26,6 +26,7 @@
     function toarray(a) {
         return Array.prototype.slice.call(a, 0);
     }
+    this.toarray = toarray;
 
     /**
      * Determines whether a number is odd

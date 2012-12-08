@@ -83,6 +83,22 @@
     this.tail = tail;
 
     /**
+     * Returns the first element of an array
+     */
+    function first(a) {
+        return a[0];
+    }
+    this.first = first;
+
+    /**
+     * Returns the last element of an array
+     */
+    function last(a) {
+        return a[a.length -1];
+    }
+    this.last = last;
+
+    /**
      * Returns the sign of input
      */
     function sign(n) {

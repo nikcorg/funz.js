@@ -7,6 +7,8 @@ As a result of this enlightenment, I've been writing and borrowing itty bitty fu
 
 Finally, I got around to compiling what I have found to be the most useful ones into one place. This is that place.
 
+This collection will grow organically as the need for new functionality arises. If you're looking for a complete solution, this is not the place. This is more an academic exercise than a real project.
+
 Examples
 ========
 

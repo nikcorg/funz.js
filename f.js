@@ -103,7 +103,7 @@
     /**
      * Extracts a head portion from an array
      * @param  {Array} a
-     * @param  {Number} [until=1]
+     * @param  {Number} [until=1] Exclusive
      * @return {Array}
      */
     function head(a, until) {
@@ -115,7 +115,7 @@
     /**
      * Extracts a tail portion from an array
      * @param  {Array} a
-     * @param  {Array} [from=1]
+     * @param  {Array} [from=1] Inclusive
      * @return {Array}
      */
     function tail(a, from) {

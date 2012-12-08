@@ -284,6 +284,8 @@
      * @param  {String} sep
      * @param  {Number} [limit=1]
      * @return {Array}
+     * @example split(" ")("foo bar baz") => ["foo", "bar", "baz"]
+     * @example split(" ", 2)("foo bar baz") => ["foo", "bar baz"]
      */
     function split(sep, limit) {
         limit = limit && Math.max(limit, 1) || false;
@@ -303,6 +305,7 @@
      * Maps an array to a dictionary-like object
      * @param  {Array} keys
      * @return {Object}
+     * @example object(["name", "value"])(["foo", "bar"]) => { name: "foo", value: "bar" }
      */
     function object(keys) {
         return function objectinner(a) {
@@ -322,7 +325,7 @@
      * @param {Function} [func] The function to bind params to
      * @return {*}
      * @example add2 = partial(add, 2)(2) => 2 + 2
-     * @example ua = partial(window, prop("navigator"))() => get window.navigator
+     * @example ua = partial(window, function () { return this.navigator })() => get window.navigator
      */
     function partial(thisp, func /*, fixed arguments */) {
         var outerargs = toarray(arguments);
@@ -351,7 +354,7 @@
      * @param {Object} thisp
      * @return {*}
      * @example splitrim = compose(trim, prop("foo"))({foo: "  yay   "}) => trim(prop("foo")) => "yay"
-     * @example randint4 = compose(Math.round, partial(mul, 4), Math.random()) => Math.round(mul(4, Math.random()))
+     * @example randint4 = compose(Math.round, partial(mul, 4), Math.random)() => Math.round(mul(4, Math.random()))
      */
     function compose(/* function1, function2, function3, functionN, thisp */) {
         var fstack = toarray(arguments).reverse();

@@ -142,6 +142,16 @@
     this.constrain = constrain;
 
     /**
+     * Check if a property exists
+     */
+    function has(pname) {
+        return function (o) {
+            return Object.hasOwnProperty.call(o, pname);
+        };
+    }
+    this.has = has;
+
+    /**
      * Returns a property key from input
      */
     function prop(key) {

@@ -18,7 +18,7 @@
 }(this, function() {
     "use strict";
 
-    function makeArray(a) {
+    function toarray(a) {
         return Array.prototype.slice.call(a, 0);
     }
 
@@ -221,7 +221,7 @@
      * Returns a partial application
      */
     function partial(fn) {
-        var fixedargs = makeArray(arguments);
+        var fixedargs = toarray(arguments);
         var thisp;
 
         if (typeof(first(fixedargs)) !== "function") {
@@ -229,7 +229,7 @@
         }
 
         return function partialinner() {
-            var args = fixedargs.concat(makeArray(arguments));
+            var args = fixedargs.concat(toarray(arguments));
             return fn.apply(thisp || this, args);
         };
     }
@@ -241,7 +241,7 @@
      * is returned by the first argument
      */
     function compose() {
-        var fstack = makeArray(arguments).reverse();
+        var fstack = toarray(arguments).reverse();
         var thisp;
 
         if (typeof(last(fstack)) !== "function") {

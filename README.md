@@ -35,3 +35,8 @@ Get a random integer between 1 and 3
         f.partial(f.mul, 2),
         Math.random
         );
+
+LICENSE
+=======
+
+`f.js` is open source distributed under the MIT License. See `LICENSE`.

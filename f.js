@@ -220,17 +220,19 @@
     /**
      * Returns a partial application
      */
-    function partial(fn) {
-        var fixedargs = toarray(arguments);
+    function partial() {
+        var outerargs = toarray(arguments);
+        var func = outerargs.shift();
         var thisp;
 
-        if (typeof(first(fixedargs)) !== "function") {
-            thisp = fixedargs.shift();
+        if (typeof(func) !== "function") {
+            thisp = func;
+            func = outerargs.shift();
         }
 
         return function partialinner() {
-            var args = fixedargs.concat(toarray(arguments));
-            return fn.apply(thisp || this, args);
+            var args = outerargs.concat(toarray(arguments));
+            return func.apply(thisp || this, args);
         };
     }
     this.partial = partial;

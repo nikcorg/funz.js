@@ -1,19 +1,15 @@
-/**
- * Helpers for working with map/filter/reduce
- *
- * Should play nice with Node/RequireJS/VanillaJS
- */
-
 /*globals module:true, define:true*/
 (function(root, factory) {
     "use strict";
 
-    root.f = factory.call({});
+    var f = factory.call({});
 
     if (typeof define === "function" && define.amd) {
-        define(root.f.always(root.f));
+        define(f.always(f));
     } else if (typeof module === "object" && "exports" in module) {
-        module.exports = root.f;
+        module.exports = f;
+    } else {
+        root.f = f;
     }
 }(this, function() {
     "use strict";

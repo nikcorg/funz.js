@@ -18,12 +18,19 @@
 }(this, function() {
     "use strict";
 
+    /**
+     * Makes an array of an array-like collection, such as the arguments object or a NodeList
+     * @param  {Arguments|NodeList} a
+     * @return {Array}
+     */
     function toarray(a) {
         return Array.prototype.slice.call(a, 0);
     }
 
     /**
-     * Determines if an input is an odd number
+     * Determines whether a number is odd
+     * @param  {Number} n
+     * @return {Boolean}
      */
     function odd(n) {
         return n % 2 !== 0;
@@ -31,7 +38,9 @@
     this.odd = odd;
 
     /**
-     * Determines if an input is an even number
+     * Determines whether a number is even
+     * @param  {Number} n
+     * @return {Boolean}
      */
     function even(n) {
         return n % 2 === 0;
@@ -39,7 +48,10 @@
     this.even = even;
 
     /**
-     * Multiplies the input
+     * Multiplies two numbers and returns their product
+     * @param  {Number} a
+     * @param  {Number} b
+     * @return {Number}
      */
     function mul(a, b) {
         return a * b;
@@ -47,7 +59,10 @@
     this.mul = mul;
 
     /**
-     * Adds the input
+     * Adds two numbers and returns their sum
+     * @param {Number} a
+     * @param {Number} b
+     * @return {Number}
      */
     function add(a, b) {
         return a + b;
@@ -55,7 +70,10 @@
     this.add = add;
 
     /**
-     * Subtracts the input
+     * Subtracts two numbers and returns their difference
+     * @param  {Number} a
+     * @param  {Number} b
+     * @return {Number}
      */
     function sub(a, b) {
         return a - b;
@@ -63,7 +81,10 @@
     this.sub = sub;
 
     /**
-     * Divides the input
+     * Divides two numbers and returns their quotient. Does not check for div w/ zero.
+     * @param  {Number} a
+     * @param  {Number} b
+     * @return {Number}
      */
     function div(a, b) {
         return a / b;
@@ -72,6 +93,8 @@
 
     /**
      * Always returns the original input
+     * @param  {*} x The value to return
+     * @return {*}
      */
     function always(x) {
         return function alwaysinner() {
@@ -81,7 +104,10 @@
     this.always = always;
 
     /**
-     * Extracts the head from array/string
+     * Extracts a head portion from an array
+     * @param  {Array} a
+     * @param  {Number} [until=1]
+     * @return {Array}
      */
     function head(a, until) {
         until = until || 1;
@@ -90,7 +116,10 @@
     this.head = head;
 
     /**
-     * Extracts the tail from an array/string
+     * Extracts a tail portion from an array
+     * @param  {Array} a
+     * @param  {Array} [from=1]
+     * @return {Array}
      */
     function tail(a, from) {
         from = from || 1;
@@ -100,6 +129,8 @@
 
     /**
      * Returns the first element of an array
+     * @param  {Array} a
+     * @return {*}
      */
     function first(a) {
         return a[0];
@@ -108,6 +139,8 @@
 
     /**
      * Returns the last element of an array
+     * @param  {Array} a
+     * @return {*}
      */
     function last(a) {
         return a[a.length -1];
@@ -115,7 +148,9 @@
     this.last = last;
 
     /**
-     * Returns the sign of input
+     * Determines the sign of a number
+     * @param  {Number} n
+     * @return {Number} Always one of -1, 0 or 1
      */
     function sign(n) {
         n = Number(n);
@@ -124,7 +159,9 @@
     this.sign = sign;
 
     /**
-     * Inverts a boolean input
+     * Returns the inverse value of a boolean
+     * @param  {Boolean} b
+     * @return {Boolean}
      */
     function inverse(b) {
         return !b;
@@ -132,7 +169,9 @@
     this.inverse = inverse;
 
     /**
-     * Returns true for an empty string/array
+     * Determines whether the input is of zero length
+     * @param  {String|Array} s
+     * @return {Boolean}
      */
     function empty(s) {
         return s.length === 0;
@@ -140,7 +179,9 @@
     this.empty = empty;
 
     /**
-     * Trim a string
+     * Trims leading and trailing whitespace characters from a string
+     * @param  {String} s
+     * @return {String}
      */
     function trim(s) {
         return s.replace(/^\s+|\s+$/g, "");
@@ -149,6 +190,9 @@
 
     /**
      * Constrains a number within defined boundaries. Inclusive.
+     * @param  {Number} lower
+     * @param  {Number} upper
+     * @return {Number}
      */
     function constrain(lower, upper) {
         return function constraininner(v) {
@@ -158,7 +202,10 @@
     this.constrain = constrain;
 
     /**
-     * Check whether a number is between set boundaries. Inclusive.
+     * Determines whether a number is between defined boundaries. Inclusive.
+     * @param  {Number} lower
+     * @param  {Number} upper
+     * @return {Boolean}
      */
     function between(lower, upper) {
         var c = constrain(lower, upper);
@@ -169,7 +216,9 @@
     this.between = between;
 
     /**
-     * Check if a property exists
+     * Determines whether a property exists
+     * @param  {String}  pname
+     * @return {Boolean}
      */
     function has(pname) {
         return function hasinner(o) {
@@ -179,7 +228,9 @@
     this.has = has;
 
     /**
-     * Returns a property key from input
+     * Returns a property from an input object
+     * @param  {String} pname
+     * @return {*}
      */
     function prop(pname) {
         return function propinner(o) {
@@ -190,7 +241,9 @@
     this.pluck = prop;
 
     /**
-     * Invokes a function fn on input
+     * Invokes a function on input and returns the result
+     * @param  {String} fn
+     * @return {*}
      */
     function func(fn) {
         return function funcinner(o) {
@@ -200,7 +253,9 @@
     this.func = func;
 
     /**
-     * Match a value against a regex
+     * Matches input against a regular expression
+     * @param  {String|RegExp} re
+     * @return {Boolean}
      */
     function match(re) {
         if (! (re instanceof RegExp)) {
@@ -213,7 +268,9 @@
     this.match = match;
 
     /**
-     * Shorthand for an inverted matcher
+     * A shorthand for an inverted match
+     * @param  {String|RegExp} re
+     * @return {Boolean}
      */
     function omit(re) {
         return compose(inverse, match(re));
@@ -221,9 +278,12 @@
     this.omit = omit;
 
     /**
-     * Splits a string on a separator to limit parts
-     * The sum of the returned parts is always the
-     * original input.
+     * Splits a string using a separator.
+     * Can limit the number of pieces input is split into,
+     * without truncating the returned result.
+     * @param  {String} sep
+     * @param  {Number} [limit=1]
+     * @return {Array}
      */
     function split(sep, limit) {
         limit = limit && Math.max(limit, 1) || false;
@@ -240,7 +300,9 @@
     this.split = split;
 
     /**
-     * Maps an array to an object
+     * Maps an array to a dictionary-like object
+     * @param  {Array} keys
+     * @return {Object}
      */
     function object(keys) {
         return function objectinner(a) {
@@ -255,13 +317,19 @@
     this.object = object;
 
     /**
-     * Returns a partial application
+     * Creates a partial application of a function
+     * @param {Object} [thisp] Specify a bound context
+     * @param {Function} [func] The function to bind params to
+     * @return {*}
+     * @example add2 = partial(add, 2)(2) => 2 + 2
+     * @example ua = partial(window, prop("navigator"))() => get window.navigator
      */
-    function partial() {
+    function partial(thisp, func /*, fixed arguments */) {
         var outerargs = toarray(arguments);
-        var func = outerargs.shift();
-        var thisp;
 
+        func = outerargs.shift();
+
+        /* Check for a context param */
         if (typeof(func) !== "function") {
             thisp = func;
             func = outerargs.shift();
@@ -275,14 +343,21 @@
     this.partial = partial;
 
     /**
-     * Composes a function-stack to pass a value through.
-     * Evaluates right-to-left, i.e. the final returned value
-     * is returned by the first argument
+     * Composes a function stack which is input is piped through.
+     * The stack is evaluated from right-to-left, i.e. the first
+     * param returns the final result.
+     * Optionally a context can be given as the last parameter.
+     * @param {Function} fn
+     * @param {Object} thisp
+     * @return {*}
+     * @example splitrim = compose(trim, prop("foo"))({foo: "  yay   "}) => trim(prop("foo")) => "yay"
+     * @example randint4 = compose(Math.round, partial(mul, 4), Math.random()) => Math.round(mul(4, Math.random()))
      */
-    function compose() {
+    function compose(/* function1, function2, function3, functionN, thisp */) {
         var fstack = toarray(arguments).reverse();
         var thisp;
 
+        /* Check for a context param */
         if (typeof(last(fstack)) !== "function") {
             thisp = fstack.pop();
         }

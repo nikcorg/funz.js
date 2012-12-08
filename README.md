@@ -28,8 +28,8 @@ Find a single cookie
 Get a random integer between 1 and 3
 
     var getRandInt = f.compose(
-        f.partial(null, f.add, 1),
+        f.partial(f.add, 1),
         Math.round,
-        f.partial(null, f.mul, 2),
+        f.partial(f.mul, 2),
         Math.random
         );

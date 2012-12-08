@@ -220,11 +220,17 @@
     /**
      * Returns a partial application
      */
-    function partial(ctx, fn) {
-        var rest = tail(makeArray(arguments), 2);
+    function partial(fn) {
+        var fixedargs = makeArray(arguments);
+        var thisp;
+
+        if (typeof(first(fixedargs)) !== "function") {
+            thisp = fixedargs.shift();
+        }
+
         return function partialinner() {
-            var args = rest.concat(makeArray(arguments));
-            return fn.apply(ctx, args);
+            var args = fixedargs.concat(makeArray(arguments));
+            return fn.apply(thisp || this, args);
         };
     }
     this.partial = partial;
@@ -236,10 +242,16 @@
      */
     function compose() {
         var fstack = Array.prototype.slice.call(arguments, 0).reverse();
-        return function composeinner(v) {
-            var r = [v];
+        var thisp;
+
+        if (typeof(last(fstack)) !== "function") {
+            thisp = fstack.pop();
+        }
+
+        return function composeinner() {
+            var r = arguments;
             fstack.forEach(function (f) {
-                r = [f.apply(this, r)];
+                r = [f.apply(thisp || this, r)];
             });
             return r[0];
         };

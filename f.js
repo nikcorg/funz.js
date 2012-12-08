@@ -23,6 +23,22 @@
     }
 
     /**
+     * Determines if an input is an odd number
+     */
+    function odd(n) {
+        return n % 2 !== 0;
+    }
+    this.odd = odd;
+
+    /**
+     * Determines if an input is an even number
+     */
+    function even(n) {
+        return n % 2 === 0;
+    }
+    this.even = even;
+
+    /**
      * Multiplies the input
      */
     function mul(a, b) {

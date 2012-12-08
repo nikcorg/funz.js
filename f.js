@@ -74,7 +74,7 @@
      * Always returns the original input
      */
     function always(x) {
-        return function () {
+        return function alwaysinner() {
             return x;
         };
     }
@@ -151,7 +151,7 @@
      * Constrains a number within defined boundaries. Inclusive.
      */
     function constrain(lower, upper) {
-        return function (v) {
+        return function constraininner(v) {
             return Math.min(upper, Math.max(lower, v));
         };
     }
@@ -162,7 +162,7 @@
      */
     function between(lower, upper) {
         var c = constrain(lower, upper);
-        return function (v) {
+        return function betweeninner(v) {
             return c(v) === v;
         };
     }
@@ -172,7 +172,7 @@
      * Check if a property exists
      */
     function has(pname) {
-        return function (o) {
+        return function hasinner(o) {
             return Object.hasOwnProperty.call(o, pname);
         };
     }
@@ -182,7 +182,7 @@
      * Returns a property key from input
      */
     function prop(pname) {
-        return function (o) {
+        return function propinner(o) {
             return o[pname];
         };
     }
@@ -193,7 +193,7 @@
      * Invokes a function fn on input
      */
     function func(fn) {
-        return function (o) {
+        return function funcinner(o) {
             return o[fn]();
         };
     }
@@ -206,7 +206,7 @@
         if (! (re instanceof RegExp)) {
             re = new RegExp("^" + re + "$");
         }
-        return function (v) {
+        return function matchinner(v) {
             return re.test(v);
         };
     }
@@ -227,7 +227,7 @@
      */
     function split(sep, limit) {
         limit = limit && Math.max(limit, 1) || false;
-        return function (s) {
+        return function splitinner(s) {
             var p = s.split(sep);
             var r = p.splice(limit);
             if (limit && r.length) {
@@ -243,7 +243,7 @@
      * Maps an array to an object
      */
     function object(keys) {
-        return function (a) {
+        return function objectinner(a) {
             var ret = {};
             var k = keys.slice(0);
             while (k.length > 0) {
@@ -289,7 +289,7 @@
 
         return function composeinner() {
             var r = arguments;
-            fstack.forEach(function (f) {
+            fstack.forEach(function composeexec(f) {
                 r = [f.apply(thisp || this, r)];
             });
             return r[0];

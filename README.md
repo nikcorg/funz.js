@@ -19,9 +19,9 @@ Parse `document.cookie`
             .map(f.compose(f.object(["name","value"]), f.split("=", 2)));
     }
 
-Get a single cookie
+Find a single cookie
 
-    function getCookie(name) {
+    function findCookie(name) {
         return parseCookies().filter(f.compose(f.match(name), f.prop("name"))).pop();
     }
 

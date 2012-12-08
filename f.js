@@ -4,9 +4,9 @@
 
     var f = factory.call({});
 
-    if (typeof define === "function" && define.amd) {
+    if (typeof(define) === "function" && define.amd) {
         define(f.always(f));
-    } else if (typeof module === "object" && "exports" in module) {
+    } else if (typeof(require) === "function" && typeof module !== "undefined" ) {
         module.exports = f;
     } else {
         root.f = f;

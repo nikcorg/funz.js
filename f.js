@@ -299,6 +299,47 @@
     this.split = split;
 
     /**
+     * Extracts the keys from an object
+     * @param  {Object} o
+     * @return {Array}
+     */
+    function keys(o) {
+        var ret = [];
+        var k;
+        for (k in o) {
+            if (has(k)(o)) {
+                ret.push(k);
+            }
+        }
+        return ret;
+    }
+    this.keys = keys;
+
+    /**
+     * Extracts the values from an object
+     * @param  {Object} o
+     * @return {Array}
+     */
+    function values(o) {
+        var ret = [];
+        keys(o).forEach(function (k) {
+            ret.push(o[k]);
+        });
+        return ret;
+    }
+    this.values = values;
+
+    /**
+     * Flips the keys and the values of an object
+     * @param  {Object} o
+     * @return {Object}
+     */
+    function flip(o) {
+        return object(values(o))(keys(o));
+    }
+    this.flip = flip;
+
+    /**
      * Maps an array to a dictionary-like object
      * @param  {Array} keys
      * @return {Object}

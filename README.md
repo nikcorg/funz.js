@@ -1,7 +1,7 @@
 f.js
 ====
 
-Ever since I watched the talk [Pure Javascript](https://vimeo.com/49384334), I've been near obsessed with (ab)using map/filter/reduce and friends as much as possible. Striving for the ultimately concise solution is like polishing a piece of poetry.
+Ever since I watched the talk [Pure, Functional Javascript](https://vimeo.com/49384334) by Christian Johansen, I've been near obsessed with (ab)using map/filter/reduce and friends as much as possible. Striving for the ultimately concise solution is like -making love to a beautiful woman- polishing a piece of poetry.
 
 As a result of this enlightenment, I've been writing and borrowing itty bitty functions from here and there which help me approach Javascript Nirvana.
 

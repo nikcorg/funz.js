@@ -241,7 +241,7 @@
      * is returned by the first argument
      */
     function compose() {
-        var fstack = Array.prototype.slice.call(arguments, 0).reverse();
+        var fstack = makeArray(arguments).reverse();
         var thisp;
 
         if (typeof(last(fstack)) !== "function") {

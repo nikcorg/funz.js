@@ -42,7 +42,7 @@
      * Multiplies the input
      */
     function mul(a, b) {
-        return Number(a) * Number(b);
+        return a * b;
     }
     this.mul = mul;
 
@@ -50,7 +50,7 @@
      * Adds the input
      */
     function add(a, b) {
-        return Number(a) + Number(b);
+        return a + b;
     }
     this.add = add;
 
@@ -58,7 +58,7 @@
      * Subtracts the input
      */
     function sub(a, b) {
-        return Number(a) - Number(b);
+        return a - b;
     }
     this.sub = sub;
 
@@ -66,7 +66,7 @@
      * Divides the input
      */
     function div(a, b) {
-        return Number(a) / Number(b);
+        return a / b;
     }
     this.div = div;
 

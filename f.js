@@ -154,9 +154,9 @@
     /**
      * Returns a property key from input
      */
-    function prop(key) {
+    function prop(pname) {
         return function (o) {
-            return o[key];
+            return o[pname];
         };
     }
     this.prop = prop;

@@ -132,7 +132,7 @@
     this.trim = trim;
 
     /**
-     * Constrains a number within defined boundaries
+     * Constrains a number within defined boundaries. Inclusive.
      */
     function constrain(lower, upper) {
         return function (v) {
@@ -140,6 +140,17 @@
         };
     }
     this.constrain = constrain;
+
+    /**
+     * Check whether a number is between set boundaries. Inclusive.
+     */
+    function between(lower, upper) {
+        var c = constrain(lower, upper);
+        return function (v) {
+            return c(v) === v;
+        };
+    }
+    this.between = between;
 
     /**
      * Check if a property exists

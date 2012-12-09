@@ -1,0 +1,25 @@
+{
+    "name": "funz",
+    "version": "0.1.0",
+    "description": "Helpers for functional programming",
+    "categories": [
+        "Utilities"
+    ],
+    "main": "funz.js",
+    "github": "https://github.com/nikcorg/funz.js",
+    "bugs": {
+        "web": "https://github.com/nikcorg/funz.js/issues"
+    },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/nikcorg/funz.git"
+        }
+    ],
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "http://www.opensource.org/licenses/mit-license.php"
+        }
+    ]
+}

@@ -25,6 +25,66 @@
     this.toarray = toarray;
 
     /**
+     * Determines if a value is less than a set upper limit
+     * @param  {Number} n
+     * @return {Boolean}
+     */
+    function lt(n) {
+        return function ltinner(m) {
+            return m < n;
+        };
+    }
+    this.lt = lt;
+
+    /**
+     * Determines if a value is less than or equal to an upper limit
+     * @param  {Number} n
+     * @return {Boolean}
+     */
+    function lte(n) {
+        return function lteinner(m) {
+            return m <= n;
+        };
+    }
+    this.lte = lte;
+
+    /**
+     * Determines if a value is greater than a lower limit
+     * @param  {Number} n
+     * @return {Boolean}
+     */
+    function gt(n) {
+        return function gtinner(m) {
+            return m > n;
+        };
+    }
+    this.gt = gt;
+
+    /**
+     * Determines if a value is greater than or equal to a lower limit
+     * @param  {Number} n
+     * @return {Boolean}
+     */
+    function gte(n) {
+        return function gteinner(m) {
+            return m >= n;
+        };
+    }
+    this.gte = gte;
+
+    /**
+     * Determines if two values are equal
+     * @param  {Number} n
+     * @return {Boolean}   [description]
+     */
+    function eq(n) {
+        return function eqinner(m) {
+            return m == n;
+        };
+    }
+    this.eq = eq;
+
+    /**
      * Determines whether a number is odd
      * @param  {Number} n
      * @return {Boolean}

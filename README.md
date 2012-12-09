@@ -1,4 +1,4 @@
-f.js
+funz.js
 ====
 
 Ever since I watched the talk [Pure, Functional Javascript](https://vimeo.com/49384334) by Christian Johansen, I've been near obsessed with (ab)using map/filter/reduce and friends as much as possible. Striving for the ultimately concise solution is like -making love to a beautiful woman- polishing a piece of poetry.
@@ -39,4 +39,4 @@ Get a random integer between 1 and 3
 LICENSE
 =======
 
-`f.js` is open source distributed under the MIT License. See `LICENSE`.
+`funz.js` is open source distributed under the MIT License. See `LICENSE`.

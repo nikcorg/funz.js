@@ -470,6 +470,32 @@
     this.partialr = partialr;
 
     /**
+     * Will wrap a function and continue to return new functions
+     * until all arguments have a value, after which the original
+     * function is invoked with the accumulated arguments
+     * @param  {function} func
+     * @return {*}
+     * @example curry(add)(1)(2) => 3
+     * @example curry(add)(1)()()()()(2) => 3
+     */
+    function curry(func) {
+        var args = tail(toarray(arguments));
+        var nreq = func.length;
+        var thisp;
+
+        return function () {
+            args = args.concat(toarray(arguments));
+
+            if (args.length < nreq) {
+                return curry.apply(thisp, [func].concat(args));
+            }
+
+            return func.apply(thisp, args);
+        };
+    }
+    this.curry = curry;
+
+    /**
      * Composes a function stack which is input is piped through.
      * The stack is evaluated from right-to-left, i.e. the first
      * param returns the final result.

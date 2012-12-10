@@ -18,7 +18,7 @@ Parse `document.cookie`
         return document.cookie.split(";")
             .map(f.trim)
             .filter(f.compose(f.inverse, f.empty))
-            .map(f.compose(f.object(["name","value"]), f.split("=", 2)));
+            .map(f.compose(f.dict(["name","value"]), f.split("=", 2)));
     }
 
 Find a single cookie

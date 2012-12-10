@@ -7,7 +7,6 @@
     }
 }(
     function (funz) {
-        console.log("suite");
         test("toarray", function () {
             equal(true, funz.toarray(arguments) instanceof Array);
 

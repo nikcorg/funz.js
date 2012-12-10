@@ -8,6 +8,17 @@
 <body>
   <div id="qunit"></div>
   <script src="qunit-1.10.0.js"></script>
-  <script src="tests.js"></script>
+  <script src="require.js"></script>
+  <script>
+  require(["../funz.js"], function (funz) {
+      test("funz is returned by require", function () {
+          ok(funz);
+      });
+      test("funz is not a property of window", function () {
+          equal(true, typeof(window.funz) === "undefined");
+      });
+  });
+  </script>
+  <script type="text/javascript" src="tests.js"></script>
 </body>
 </html>

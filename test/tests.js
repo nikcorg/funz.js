@@ -171,7 +171,7 @@
         test("func", function () {
             equal("function", typeof funz.func("foo"));
             equal("foo", funz.func("foo")({foo:function(){return "foo";}}));
-            throws(funz.func("foo")({foo:function(){return "foo";}}), Error);
+            throws(funz.partial(funz.func("foo"), {bar:function(){return "foo";}}), TypeError);
         });
 
         test("match", function () {

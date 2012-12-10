@@ -231,6 +231,21 @@ test("partial", function () {
     equal(8, funz.partial(ob, ob.add, -1)(6));
 });
 
+test("partialr", function () {
+    var ob = {
+        num: 3,
+        sub: function (n, m) {
+            return this.num - n - (isNaN(m) ? 0 : m);
+        }
+    };
+
+    equal("function", typeof funz.partialr(Math.pow));
+    equal(0, funz.partial(ob, ob.sub, -3)(6));
+    equal(81, funz.partialr(Math.pow, 4)(3));
+    equal(0, funz.partialr(funz.div, 1)(0));
+    equal("barfoo", funz.partialr(funz.add, "foo")("bar"));
+});
+
 test("compose", function () {
     var ob = {
         suffix: "overload!",

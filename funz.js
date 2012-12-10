@@ -445,6 +445,31 @@
     this.partial = partial;
 
     /**
+     * Creates a partial application of a function where params are bound from the right to left
+     * @param {Object} [thisp] Specify a bound context
+     * @param {Function} [func] The function to bind params to
+     * @return {*}
+     * @example pow2 = partial(Math.pow, 4)(3) => 3^4 => 81
+     */
+    function partialr(thisp, func) {
+        var outerargs = toarray(arguments);
+
+        func = outerargs.shift();
+
+        /* Check for a context param */
+        if (typeof(func) !== "function") {
+            thisp = func;
+            func = outerargs.shift();
+        }
+
+        return function () {
+            var args = toarray(arguments).concat(outerargs);
+            return func.apply(thisp || this, args);
+        };
+    }
+    this.partialr = partialr;
+
+    /**
      * Composes a function stack which is input is piped through.
      * The stack is evaluated from right-to-left, i.e. the first
      * param returns the final result.

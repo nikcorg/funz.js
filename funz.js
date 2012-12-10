@@ -9,7 +9,7 @@
     } else if (typeof(require) === "function" && typeof module !== "undefined" ) {
         module.exports = f;
     } else {
-        root.f = f;
+        root.funz = f;
     }
 }(this, function() {
     "use strict";
@@ -167,7 +167,7 @@
      * @return {Array}
      */
     function head(a, until) {
-        until = until || 1;
+        until = Math.max(1, until) || 1;
         return a.slice(0, until);
     }
     this.head = head;
@@ -179,7 +179,7 @@
      * @return {Array}
      */
     function tail(a, from) {
-        from = from || 1;
+        from = Math.max(1, from) || 1;
         return a.slice(from);
     }
     this.tail = tail;
@@ -348,8 +348,9 @@
         limit = limit && Math.max(limit, 1) || false;
         return function splitinner(s) {
             var p = s.split(sep);
-            var r = p.splice(limit);
-            if (limit && r.length) {
+            var r;
+            if (!!limit) {
+                r = p.splice(limit);
                 r.unshift(p.pop());
                 p.push(r.join(sep));
             }
@@ -395,7 +396,7 @@
      * @return {Object}
      */
     function flip(o) {
-        return object(values(o))(keys(o));
+        return dict(values(o))(keys(o));
     }
     this.flip = flip;
 
@@ -405,7 +406,7 @@
      * @return {Object}
      * @example object(["name", "value"])(["foo", "bar"]) => { name: "foo", value: "bar" }
      */
-    function object(keys) {
+    function dict(keys) {
         return function objectinner(a) {
             var ret = {};
             var k = keys.slice(0);
@@ -415,7 +416,7 @@
             return ret;
         };
     }
-    this.object = object;
+    this.dict = dict;
 
     /**
      * Creates a partial application of a function
@@ -459,8 +460,8 @@
         var thisp;
 
         /* Check for a context param */
-        if (typeof(last(fstack)) !== "function") {
-            thisp = fstack.pop();
+        if (typeof(first(fstack)) !== "function") {
+            thisp = fstack.shift();
         }
 
         return function composeinner() {

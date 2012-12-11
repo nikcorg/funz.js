@@ -480,14 +480,25 @@
      */
     function curry(func) {
         var args = tail(toarray(arguments));
-        var nreq = func.length;
+        var nreq;
         var thisp;
 
-        return function () {
+        if (typeof(func) !== "function") {
+            thisp = func;
+            func = args.shift();
+        }
+
+        nreq = func.length;
+
+        if (args.length >= nreq) {
+            return func.apply(thisp, args);
+        }
+
+        return function curryinner() {
             args = args.concat(toarray(arguments));
 
             if (args.length < nreq) {
-                return curry.apply(thisp, [func].concat(args));
+                return curry.apply(undefined, [thisp, func].concat(args));
             }
 
             return func.apply(thisp, args);

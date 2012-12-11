@@ -276,5 +276,22 @@
             equal("fun3fun2fun1fun!", funz.compose(fun3, fun2, fun1)("fun!"));
             equal("overload!overload!fun", funz.compose(ob.toofun, ob.sofun, ob)("fun"));
         });
+
+        test("curry", function () {
+            var ob = {
+                mul: 3,
+                add: function (a, b) {
+                    return (a + b) * this.mul;
+                }
+            };
+
+            equal("function", typeof funz.curry(funz.add));
+            equal("function", typeof funz.curry(funz.add, 1));
+            equal("function", typeof funz.curry(funz.add)(1));
+            equal(3, funz.curry(funz.add)(1)(2));
+            equal(3, funz.curry(funz.add, 1)(2));
+            equal(3, funz.curry(funz.add, 1, 2));
+            equal(30, funz.curry(ob, ob.add)(3)(7));
+        });
     }
 ));

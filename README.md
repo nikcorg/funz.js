@@ -16,23 +16,23 @@ Parse `document.cookie`
 
     function parseCookies() {
         return document.cookie.split(";")
-            .map(f.trim)
-            .filter(f.compose(f.inverse, f.empty))
-            .map(f.compose(f.dict(["name","value"]), f.split("=", 2)));
+            .map(funz.trim)
+            .filter(funz.compose(funz.inverse, funz.empty))
+            .map(funz.compose(funz.dict(["name","value"]), funz.split("=", 2)));
     }
 
 Find a single cookie
 
     function findCookie(name) {
-        return parseCookies().filter(f.compose(f.match(name), f.prop("name"))).pop();
+        return parseCookies().filter(funz.compose(funz.match(name), funz.prop("name"))).pop();
     }
 
 Get a random integer between 1 and 3
 
-    var getRandInt = f.compose(
-        f.partial(f.add, 1),
+    var getRandInt = funz.compose(
+        funz.partial(funz.add, 1),
         Math.round,
-        f.partial(f.mul, 2),
+        funz.partial(funz.mul, 2),
         Math.random
         );
 

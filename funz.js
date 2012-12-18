@@ -305,7 +305,6 @@
      */
     function put(pname, pval) {
         return function putinner(o) {
-            console.log("set",pname,"to",pval,"on",o);
             o[pname] = pval;
             return o;
         };

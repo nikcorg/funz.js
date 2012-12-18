@@ -168,6 +168,15 @@
             equal(undefined, funz.prop("foo")({baz:"bar"}));
         });
 
+        test("put", function () {
+            ok("foo" in funz.put("foo", "bar")({}));
+            equal("bar", funz.put("foo", "bar")({foo:"baz"}).foo);
+        });
+
+        test("post", function () {
+            equal("foo", funz.post("returnsfoo")({returnsfoo:function(){return "foo";}}));
+        });
+
         test("func", function () {
             equal("function", typeof funz.func("foo"));
             equal("foo", funz.func("foo")({foo:function(){return "foo";}}));

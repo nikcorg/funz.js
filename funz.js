@@ -298,6 +298,36 @@
     this.pluck = prop;
 
     /**
+     * Sets a property on an input object
+     * @param  {String} pname
+     * @param  {String} pval
+     * @return {Object}
+     */
+    function put(pname, pval) {
+        return function putinner(o) {
+            console.log("set",pname,"to",pval,"on",o);
+            o[pname] = pval;
+            return o;
+        };
+    }
+    this.put = put;
+
+    /**
+     * Invokes a function on an input object with args.
+     * This-context is the object itself.
+     * Returns function result.
+     * @param  {String} fname
+     * @param  {Array} args
+     * @return {*}
+     */
+    function post(fname, args) {
+        return function postinner(o) {
+            return o[fname].apply(o, args);
+        };
+    }
+    this.post = post;
+
+    /**
      * Invokes a function on input and returns the result
      * @param  {String} fn
      * @return {*}
